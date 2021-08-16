@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,7 @@
 		63618C3126BAA55900D161B7 /* Calendarios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63618C2F26BAA55900D161B7 /* Calendarios.xcdatamodeld */; };
 		63618C3C26BAA55900D161B7 /* CalendariosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63618C3B26BAA55900D161B7 /* CalendariosTests.swift */; };
 		63618C4726BAA55900D161B7 /* CalendariosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63618C4626BAA55900D161B7 /* CalendariosUITests.swift */; };
+		63B133CD26CA574B001635EE /* KDCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 63B133CC26CA574B001635EE /* KDCalendar */; };
 		63D7415C26C3DA4000F83691 /* CalendarsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7415B26C3DA4000F83691 /* CalendarsStorage.swift */; };
 		63D7415E26C3EFFD00F83691 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7415D26C3EFFD00F83691 /* Session.swift */; };
 		63D7416026C3F12A00F83691 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7415F26C3F12A00F83691 /* Mappable.swift */; };
@@ -92,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D7416626C3F7B700F83691 /* CloudKit.framework in Frameworks */,
+				63B133CD26CA574B001635EE /* KDCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +304,9 @@
 			dependencies = (
 			);
 			name = Calendarios;
+			packageProductDependencies = (
+				63B133CC26CA574B001635EE /* KDCalendar */,
+			);
 			productName = Calendarios;
 			productReference = 63618C2126BAA55800D161B7 /* Calendarios.app */;
 			productType = "com.apple.product-type.application";
@@ -373,6 +378,9 @@
 				Base,
 			);
 			mainGroup = 63618C1826BAA55800D161B7;
+			packageReferences = (
+				63B133CB26CA574B001635EE /* XCRemoteSwiftPackageReference "CalendarView" */,
+			);
 			productRefGroup = 63618C2226BAA55800D161B7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -756,6 +764,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63B133CB26CA574B001635EE /* XCRemoteSwiftPackageReference "CalendarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mmick66/CalendarView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63B133CC26CA574B001635EE /* KDCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63B133CB26CA574B001635EE /* XCRemoteSwiftPackageReference "CalendarView" */;
+			productName = KDCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		63618C2F26BAA55900D161B7 /* Calendarios.xcdatamodeld */ = {
