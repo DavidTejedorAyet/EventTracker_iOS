@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CalendarModel" representedClassName="CalendarModel" syncable="YES" codeGenerationType="class">
+        <attribute name="icon" attributeType="String" defaultValueString="questionmark"/>
+        <attribute name="iconColor" attributeType="String" defaultValueString="ffffff" customClassName="Color"/>
+        <attribute name="markedDates" optional="YES" attributeType="Transformable" customClassName="[Date]"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
+        <element name="CalendarModel" positionX="-36" positionY="18" width="128" height="89"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
     </elements>
 </model>
