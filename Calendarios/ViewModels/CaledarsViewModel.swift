@@ -42,4 +42,9 @@ class CalendarsViewModel: ObservableObject {
     func deleteCalendar(id: Int) {
         CalendarStorage.shared.delete(id: id)
     }
+    
+    func markDate(date: Date, calendar: CalendarModel) {
+        CalendarStorage.shared.markDate(date: date, calendar: calendar)
+    }
 }
+

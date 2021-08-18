@@ -11,19 +11,32 @@ struct CalendarListCellView: View {
     var calendar: CalendarModel
     
     var body: some View {
-        HStack {
-            Image(systemName: calendar.icon ?? "questionmark")
-                .resizable()
-                .frame(width: 70, height: 70, alignment: .center)
-                .padding(12)
-                .background(Color(hex: calendar.iconColor ?? "ffffff"))
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: 4)
-            Text(calendar.name ?? "Nombre")
-            Spacer()
+        ZStack {
+
+            HStack {
+                Image(systemName: calendar.icon ?? "questionmark")
+                    .resizable()
+                    .frame(width: 50, height: 50, alignment: .center)
+                    .padding(15)
+                    .background(Color(hex: calendar.iconColor ?? "#ffffff"))
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 4)
+                    .foregroundColor(.white)
+                
+                VStack(alignment: .leading) {
+                    Text(calendar.name ?? "(Sin nombre)")
+                        .fontWeight(.semibold)
+                        .padding(.leading, 12)
+                    Spacer()
+                    Text("Texto que no se cual será pero que ya me vendrá")
+                        .padding(.leading, 12)
+                }
+                    
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
     }
 }
 

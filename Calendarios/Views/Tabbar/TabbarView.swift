@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabbarIcon: View {
-    @StateObject var tabbarController: TabbarViewController
+    @StateObject var tabbarController: TabbarController
     let width, height: CGFloat
     let systemIconName, tabName: String
     let assignedPage: Page
@@ -32,7 +32,7 @@ struct TabbarIcon: View {
 }
 
 struct TabbarView: View {
-    @StateObject var tabbarController: TabbarViewController
+    @StateObject var tabbarController: TabbarController
     @State var showPopUp = false
     
     var geometry: GeometryProxy
@@ -73,7 +73,7 @@ struct TabbarView_Previews: PreviewProvider {
                 Spacer()
                 Text("Home")
                 Spacer()
-                TabbarView(tabbarController: TabbarViewController(), geometry: geometry)
+                TabbarView(tabbarController: TabbarController(), geometry: geometry)
                 
             }
             

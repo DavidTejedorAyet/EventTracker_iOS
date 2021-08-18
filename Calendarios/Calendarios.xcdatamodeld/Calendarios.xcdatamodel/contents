@@ -3,14 +3,21 @@
     <entity name="CalendarModel" representedClassName="CalendarModel" syncable="YES" codeGenerationType="class">
         <attribute name="icon" attributeType="String" defaultValueString="questionmark"/>
         <attribute name="iconColor" attributeType="String" defaultValueString="ffffff" customClassName="Color"/>
-        <attribute name="markedDates" optional="YES" attributeType="Transformable" customClassName="[Date]"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="markedDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MarkedDateModel" inverseName="calendar" inverseEntity="MarkedDateModel"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="MarkedDateModel" representedClassName="MarkedDateModel" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="timesMarked" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="calendar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CalendarModel" inverseName="markedDates" inverseEntity="CalendarModel"/>
+    </entity>
     <elements>
-        <element name="CalendarModel" positionX="-36" positionY="18" width="128" height="89"/>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="CalendarModel" positionX="-29.66748046875" positionY="52.86541748046875" width="171.0521240234375" height="89"/>
+        <element name="Item" positionX="-188.9896240234375" positionY="-109.1604614257812" width="128" height="44"/>
+        <element name="MarkedDateModel" positionX="-323.9800415039062" positionY="80.90093994140625" width="128" height="89"/>
     </elements>
 </model>

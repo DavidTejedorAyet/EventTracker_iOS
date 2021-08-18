@@ -14,7 +14,6 @@ protocol IconPickerPopUpDelegate {
 struct IconPickerPopUp: View {
     
     var delegate: IconPickerPopUpDelegate?
-    @StateObject private var viewModel = IconPickerPopUpViewModel()
     @State var selectedIcon: String = ""
     @State var selectedColor: Color = .white
     

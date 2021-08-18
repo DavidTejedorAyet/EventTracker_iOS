@@ -12,7 +12,7 @@ enum Page: CaseIterable {
      case Profile
  }
 
-class TabbarViewController: ObservableObject {
+class TabbarController: ObservableObject {
     @Published var currentPage: Page = .List
 
 }

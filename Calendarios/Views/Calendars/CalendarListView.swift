@@ -20,8 +20,14 @@ struct CalendarListView: View {
             VStack {
                 List {
                     ForEach(viewModel.calendars, id: \.self) { calendar in
-                        CalendarListCellView(calendar: calendar)
+                        NavigationLink(destination: CalendarDetailView(calendarModel: calendar)) {
+                            CalendarListCellView(calendar: calendar)
+                            
+                        }
+                        .listRowBackground(Color("BackgroundColor"))
+                        
                     }
+                    
                     .onDelete(perform: { indexSet in
                         for index in indexSet {
                             viewModel.deleteCalendar(id: index)

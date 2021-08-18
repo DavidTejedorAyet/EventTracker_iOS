@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CalendarFormView: View {
-    
-    @StateObject var viewModel = CalendarsViewModel()
+    @StateObject private var viewModel = CalendarsViewModel()
     var calendar: CalendarModel?
     @State private var showPopUp = false
 
@@ -21,7 +20,7 @@ struct CalendarFormView: View {
     
     var body: some View {
         ZStack {
-            Color("BackgroundColor")
+            Color("BackgroundColor").ignoresSafeArea()
             ScrollView(.vertical) {
                 VStack() {
                     HStack(alignment: .center) {
@@ -29,18 +28,20 @@ struct CalendarFormView: View {
                             Image(systemName: iconName)
                                 .resizable()
                                 .frame(width: 70, height: 70, alignment: .center)
-                                .padding(12)
+                                .padding(15)
                                 .background(iconColor)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                                 .shadow(radius: 4)
+                                .foregroundColor(.white)
                             
                             Text("Editar")
-                                .padding(4)
+                                .padding(.horizontal,8)
                                 .background(Color.white)
                                 .clipShape(Capsule())
                                 .shadow(radius: 4)
                                 .offset(y:52)
+                                .foregroundColor(.black)
                             
                         }.onTapGesture {
                             withAnimation {
@@ -95,6 +96,6 @@ extension CalendarFormView: IconPickerPopUpDelegate {
 
 struct CalendarFormView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarFormView()
+        ForEach(ColorScheme.allCases, id: \.self, content: CalendarFormView().preferredColorScheme)
     }
 }

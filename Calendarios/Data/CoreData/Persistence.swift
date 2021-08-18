@@ -26,10 +26,10 @@ struct PersistenceController {
     }
     
     func save(completion: @escaping (Error?) -> () = {_ in}) {
-        let content  = container.viewContext
-        if content.hasChanges {
+        let context  = container.viewContext
+        if context.hasChanges {
             do {
-                try content.save()
+                try context.save()
                 completion(nil)
             } catch  {
                 completion(error)

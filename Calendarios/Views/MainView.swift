@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var tabbarController: TabbarViewController
+    @StateObject var tabbarController: TabbarController
     
     var body: some View {
         NavigationView {
@@ -27,7 +27,9 @@ struct MainView: View {
                     
                     TabbarView(tabbarController: tabbarController, geometry: geometry)
                 }
-            }.edgesIgnoringSafeArea(.bottom)
+            }
+            .edgesIgnoringSafeArea(.bottom)
+            .background(Color("BackgroundColor").ignoresSafeArea())
         }
         .accentColor(Color("PrimaryColor"))
     }
@@ -36,6 +38,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self, content: MainView(tabbarController: TabbarViewController()).preferredColorScheme)
+        ForEach(ColorScheme.allCases, id: \.self, content: MainView(tabbarController: TabbarController()).preferredColorScheme)
     }
 }
