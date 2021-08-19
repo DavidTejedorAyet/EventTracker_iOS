@@ -14,8 +14,8 @@ protocol IconPickerPopUpDelegate {
 struct IconPickerPopUp: View {
     
     var delegate: IconPickerPopUpDelegate?
-    @State var selectedIcon: String = ""
-    @State var selectedColor: Color = .white
+    @State var selectedIcon: String = "star"
+    @State var selectedColor: Color = .red
     
     
     var pickableColors: [Color] = [.red, .blue, .pink, .black, .white, .gray, .purple, .yellow, .orange]
@@ -39,12 +39,16 @@ struct IconPickerPopUp: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
+                            Spacer()
+                                .frame(width: 8)
+                            
                             ForEach(pickableIcons, id: \.self) { icon in
                                 Image(systemName: icon)
                                     .resizable()
                                     .frame(width: 50, height: 50, alignment: .center)
-                                    .padding(12)
+                                    .padding(16)
                                     .background(Color.white)
+                                    .foregroundColor(.black)
                                     .clipShape(Circle())
                                     .shadow(radius: 4)
                                     .onTapGesture {
@@ -64,6 +68,9 @@ struct IconPickerPopUp: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
+                            Spacer()
+                                .frame(width: 8)
+                            
                             ForEach(pickableColors, id: \.self) { color in
                                 color
                                     .frame(width: 55, height: 55)
@@ -85,11 +92,12 @@ struct IconPickerPopUp: View {
                     Image(systemName: selectedIcon)
                         .resizable()
                         .frame(width: 70, height: 70, alignment: .center)
-                        .padding(12)
+                        .padding(16)
                         .background(selectedColor)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 4))
                         .shadow(radius: 4)
+                        .foregroundColor(.white)
                     
                     Spacer()
                         .frame(height: 30)

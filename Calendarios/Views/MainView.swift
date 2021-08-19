@@ -11,28 +11,31 @@ struct MainView: View {
     @StateObject var tabbarController: TabbarController
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                VStack {
-                    Spacer()
-                    switch tabbarController.currentPage {
-                    case .List:
-                        CalendarListView()
-                            .navigationTitle("Lista")
-                    case .Profile:
-                        ProfileView()
-                            .navigationTitle("Perfil")
+        ZStack {
+            Color("BackgrounColor").ignoresSafeArea()
+            NavigationView {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer()
+                        switch tabbarController.currentPage {
+                        case .List:
+                            CalendarListView()
+                                .navigationTitle("Lista")
+                        case .Profile:
+                            ProfileView()
+                                .navigationTitle("Perfil")
+                        }
+                        Spacer()
+                        
+                        TabbarView(tabbarController: tabbarController, geometry: geometry)
                     }
-                    Spacer()
-                    
-                    TabbarView(tabbarController: tabbarController, geometry: geometry)
                 }
+                .edgesIgnoringSafeArea(.bottom)
+                .background(Color("BackgroundColor").ignoresSafeArea())
             }
-            .edgesIgnoringSafeArea(.bottom)
-            .background(Color("BackgroundColor").ignoresSafeArea())
+            .accentColor(Color("PrimaryColor"))
+            .environmentObject(CalendarsViewModel())
         }
-        .accentColor(Color("PrimaryColor"))
-        .environmentObject(CalendarsViewModel())
     }
 
     

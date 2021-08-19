@@ -17,7 +17,7 @@ struct CalendarFormView: View {
     
     @State var name: String = ""
     @State var iconName: String = "star"
-    @State var iconColor: Color = .blue
+    @State var iconColor: Color = .red
     
     
     var body: some View {
