@@ -65,14 +65,13 @@ extension CalendarCustomViewModel: FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        if let markedDates = Array(calendarModel.markedDates?) {
+
+        for markedDate in calendarModel.markedDates ?? [] {
+            
+            if markedDate.date == date {
+                return 1
+            }
         }
-//        for markedDate in calendarModel.markedDates ?? [] {
-//            
-//            if markedDate.date == date {
-//                return 1
-//            }
-//        }
         return 0
     }
 }

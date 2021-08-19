@@ -32,7 +32,9 @@ struct MainView: View {
             .background(Color("BackgroundColor").ignoresSafeArea())
         }
         .accentColor(Color("PrimaryColor"))
+        .environmentObject(CalendarsViewModel())
     }
+
     
 }
 

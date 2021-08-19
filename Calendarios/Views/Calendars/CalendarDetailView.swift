@@ -10,9 +10,9 @@ import SwiftUI
 
 
 struct CalendarDetailView: View {
-    @StateObject var calendarModel: CalendarModel
+    @State var calendarModel: CalendarModel
     @State var selectedDate: Date?
-    @StateObject private var viewModel = CalendarsViewModel()
+    @ObservedObject var viewModel: CalendarsViewModel
 
     var body: some View {
         ZStack {
@@ -39,7 +39,7 @@ struct CalendarDetailView: View {
 struct CalendarDetailView_Previews: PreviewProvider {
     static var previews: some View {
         
-        ForEach(ColorScheme.allCases, id: \.self, content: CalendarDetailView(calendarModel: CalendarModel(context: PersistenceController.shared.container.viewContext)).preferredColorScheme)
+        ForEach(ColorScheme.allCases, id: \.self, content: CalendarDetailView(calendarModel: CalendarModel(name: "Prueba", iconName: "star", iconColor: "aa1a4b"), viewModel: CalendarsViewModel()).preferredColorScheme)
     }
 }
 

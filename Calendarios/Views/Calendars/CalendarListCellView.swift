@@ -14,7 +14,7 @@ struct CalendarListCellView: View {
         ZStack {
 
             HStack {
-                Image(systemName: calendar.icon ?? "questionmark")
+                Image(systemName: calendar.iconName ?? "questionmark")
                     .resizable()
                     .frame(width: 50, height: 50, alignment: .center)
                     .padding(15)
@@ -44,6 +44,6 @@ struct CalendarListCellView_Previews: PreviewProvider {
 
     static var previews: some View {
     
-        CalendarListCellView(calendar: CalendarModel(context: PersistenceController.shared.container.viewContext))
+        CalendarListCellView(calendar: CalendarModel(name: "Prueba", iconName: "star", iconColor: "aa1a4b"))
     }
 }

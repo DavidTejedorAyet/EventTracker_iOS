@@ -48,7 +48,7 @@ struct CalendarCustomView: UIViewRepresentable {
     
     struct CalendarCustomView_Previews: PreviewProvider {
         static var previews: some View {
-            CalendarCustomView(calendarModel: CalendarModel(context: PersistenceController.shared.container.viewContext), selectedDate: .constant(Date()))
+            CalendarCustomView(calendarModel: CalendarModel(name: "Prueba", iconName: "star", iconColor: "aa1a4b"), selectedDate: .constant(Date()))
         }
     }
 }

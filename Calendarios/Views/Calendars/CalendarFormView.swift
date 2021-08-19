@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CalendarFormView: View {
-    @StateObject private var viewModel = CalendarsViewModel()
+    @Environment(\.presentationMode) var presentationMode
+
+    @EnvironmentObject private var viewModel: CalendarsViewModel
     var calendar: CalendarModel?
     @State private var showPopUp = false
 
@@ -62,7 +64,10 @@ struct CalendarFormView: View {
                     Spacer().frame(height: 50)
                     
                     Button(action: {
-                        viewModel.addCalendar(name: name, imageColor: iconColor, icon: iconName)
+                        viewModel.addCalendar(name: name, imageColor: iconColor, icon: iconName) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+
                     }, label: {
                         Text("GUARDAR")
                     })
