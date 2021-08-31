@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct CalendarModel: Mappable, Hashable {
+
+class CalendarModel: Mappable, Hashable, ObservableObject {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

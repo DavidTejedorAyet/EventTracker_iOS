@@ -31,7 +31,6 @@ class StoredDataManager: Codable {
     
     
     static func save() {
-        
         if let data = try? PropertyListEncoder().encode(current) {
             UserDefaults.standard.set(data, forKey: kArchiveKey)
         }

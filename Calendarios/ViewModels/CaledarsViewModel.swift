@@ -12,14 +12,18 @@ import Combine
 class CalendarsViewModel: ObservableObject {
     
     @Published var calendars: [CalendarModel] = [CalendarModel]()
+    @Published var selectedCalendar: CalendarModel = CalendarModel(name: "(Sin nombre)", iconName: "questionmark", iconColor: "#ffffff") 
+    @Published var selectedMarkedDate: MarkedDateModel?
+    @Published var selectedDate: Date? {
+        didSet {
+            selectedMarkedDate = selectedCalendar.markedDates?.first(where: {Calendar.current.compare($0.date, to: selectedDate ?? Date(), toGranularity: .day) == .orderedSame})
+        }
+    }
     
     init() {
         loadCalendars()
     }
-    
-    func updateView(){
-        self.objectWillChange.send()
-    }
+
     
     func loadCalendars() {
         if Session.current.userModel != nil{
@@ -27,7 +31,6 @@ class CalendarsViewModel: ObservableObject {
         } else {
             loadLocalData()
         }
-        updateView()
     }
     
     func syncData() {
@@ -55,9 +58,23 @@ class CalendarsViewModel: ObservableObject {
         //        CalendarStorage.shared.delete(id: id)
     }
     
-    func markDate(date: Date, note: String = "", calendar: CalendarModel) {
-        let markedDate = MarkedDateModel(date: date)
-        //        CalendarStorage.shared.markDate(date: date, calendar: calendar)
+    func addMark(date: Date, completion: () -> () = {}) {
+
+            if let markedDate = self.selectedMarkedDate {
+                markedDate.timesMarked += 1
+            } else {
+                let markedDate = MarkedDateModel(date: date)
+                self.selectedMarkedDate = markedDate
+                markedDate.timesMarked = 1
+                selectedCalendar.markedDates?.append(markedDate)
+            }
+            StoredDataManager.save()
+            loadCalendars()
+        
+    }
+    
+    func removeMark(date: Date, id: UUID, completion: () -> Void) {
+        
     }
     
     func editNote(markedDate: MarkedDateModel, note: String) {

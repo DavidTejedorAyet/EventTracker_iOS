@@ -12,20 +12,19 @@ struct CalendarListCellView: View {
     
     var body: some View {
         ZStack {
-
             HStack {
-                Image(systemName: calendar.iconName ?? "questionmark")
+                Image(systemName: calendar.iconName )
                     .resizable()
                     .frame(width: 50, height: 50, alignment: .center)
                     .padding(15)
-                    .background(Color(hex: calendar.iconColor ?? "#ffffff"))
+                    .background(Color(hex: calendar.iconColor ))
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.white, lineWidth: 4))
                     .shadow(radius: 4)
                     .foregroundColor(.white)
                 
                 VStack(alignment: .leading) {
-                    Text(calendar.name ?? "(Sin nombre)")
+                    Text(calendar.name )
                         .fontWeight(.semibold)
                         .padding(.leading, 12)
                     Spacer()

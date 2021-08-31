@@ -12,7 +12,7 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
-            Color("BackgrounColor").ignoresSafeArea()
+            Color("BackgroundColor").ignoresSafeArea()
             NavigationView {
                 GeometryReader { geometry in
                     VStack {

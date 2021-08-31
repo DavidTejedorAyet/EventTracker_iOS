@@ -10,8 +10,7 @@ import SwiftUI
 struct CalendarListView: View {
     
     @EnvironmentObject private var viewModel: CalendarsViewModel
-    @State var intValue: Int = 0
-
+    
     init() {
         UITableView.appearance().backgroundColor = .clear
     }
@@ -21,12 +20,14 @@ struct CalendarListView: View {
             VStack {
                 List {
                     ForEach(viewModel.calendars, id: \.self) { calendar in
-                        NavigationLink(destination: CalendarDetailView(calendarModel: calendar, viewModel: viewModel)) {
-                            CalendarListCellView(calendar: calendar)
+                        ZStack{
+                            NavigationLink(destination: CalendarDetailView(selectedCalendar: calendar)) {
+                                CalendarListCellView(calendar: calendar)
+                                    
+                            }
+                            
+                        }            .listRowBackground(Color("BackgroundColor"))
 
-                        }
-                        .listRowBackground(Color("BackgroundColor"))
-                        
                     }
                     
                     .onDelete(perform: { indexSet in
@@ -37,16 +38,15 @@ struct CalendarListView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .onAppear() {
-                intValue = Int.random(in: 1..<100)
-            }
         }
     }
 }
 
 struct CalendarListView_Previews: PreviewProvider {
     static var previews: some View {
+        
         ForEach(ColorScheme.allCases, id: \.self, content: CalendarListView().preferredColorScheme)
+            .environmentObject(CalendarsViewModel())
         
     }
 }

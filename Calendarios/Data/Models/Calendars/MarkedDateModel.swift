@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct MarkedDateModel: Mappable {
+class MarkedDateModel: Mappable, ObservableObject {
   
     var id: UUID = UUID()
     var date: Date
-    var note: String
+    var note: String = ""
+    var timesMarked: Int = 0
     
-    internal init(date: Date, note: String = "") {
+    internal init(date: Date) {
         self.date = date
-        self.note = note
     }
 }

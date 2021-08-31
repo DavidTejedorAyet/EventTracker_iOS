@@ -12,7 +12,7 @@ protocol CalendarViewDelegate {
     func dateDidSelected(date: Date)
 }
 
-class CalendarCustomViewModel: NSObject, ObservableObject {
+class CustomCalendarController: NSObject, ObservableObject {
     
     var calendarModel: CalendarModel!
     var delegate: CalendarViewDelegate?
@@ -25,10 +25,19 @@ class CalendarCustomViewModel: NSObject, ObservableObject {
         }
     }
     
-
+    var previousUpdaterState = false
+    
+    func checkUpdatableData(updatable: Bool) {
+        if previousUpdaterState != updatable {
+            previousUpdaterState = updatable
+            calendar.reloadData()
+        }
+    }
+    
+    
 }
 
-extension CalendarCustomViewModel: FSCalendarDelegateAppearance {
+extension CustomCalendarController: FSCalendarDelegateAppearance {
     func loadView() {
         
         calendar.appearance.headerTitleColor = UIColor(named: "PrimaryColor")
@@ -37,8 +46,11 @@ extension CalendarCustomViewModel: FSCalendarDelegateAppearance {
         calendar.appearance.titleFont = UIFont.systemFont(ofSize: 22)
         calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 18)
         calendar.appearance.titleDefaultColor = UIColor(named: "TextColor")
-        calendar.appearance.todayColor = .clear
-        calendar.appearance.selectionColor = .clear
+        
+        
+        calendar.appearance.titleTodayColor = UIColor(named: "TextColor")
+        calendar.appearance.titleSelectionColor = UIColor(named: "TextColor")
+        
         calendar.appearance.borderSelectionColor = UIColor(named: "PrimaryColor")
         calendar.appearance.eventDefaultColor = UIColor(named: "PrimaryColor")
         
@@ -49,9 +61,36 @@ extension CalendarCustomViewModel: FSCalendarDelegateAppearance {
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0;
 
     }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+        if Calendar.current.compare(date, to: Date(), toGranularity: .day) == .orderedSame {
+            return UIColor(hex: calendarModel.iconColor)
+        }
+        return .clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        for markedDate in calendarModel.markedDates ?? [] {
+            if Calendar.current.compare(date, to: markedDate.date, toGranularity: .day) == .orderedSame {
+                return UIColor(hex: calendarModel.iconColor) 
+                
+            }
+        }
+        return .clear
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+        for markedDate in calendarModel.markedDates ?? [] {
+            if Calendar.current.compare(date, to: markedDate.date, toGranularity: .day) == .orderedSame {
+                return UIColor(hex: calendarModel.iconColor)
+                
+            }
+        }
+        return .clear
+    }
 }
 
-extension CalendarCustomViewModel: FSCalendarDataSource {
+extension CustomCalendarController: FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         debugPrint("did select date \(date.getString(format: "dd-MM-yyyy"))")
         if monthPosition == .next || monthPosition == .previous {
@@ -68,10 +107,11 @@ extension CalendarCustomViewModel: FSCalendarDataSource {
 
         for markedDate in calendarModel.markedDates ?? [] {
             
-            if markedDate.date == date {
+            if !markedDate.note.isEmpty {
                 return 1
             }
         }
         return 0
     }
+    
 }

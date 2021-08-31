@@ -18,7 +18,7 @@
 		6319780826C2E26D00826122 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319780726C2E26D00826122 /* SettingsView.swift */; };
 		6319780B26C2E3AD00826122 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6319780A26C2E3AD00826122 /* MainView.swift */; };
 		633BD30226CA6C1100DD5D7F /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 633BD30126CA6C1100DD5D7F /* FSCalendar */; };
-		633BD30426CBC7A100DD5D7F /* CalendarCustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD30326CBC7A100DD5D7F /* CalendarCustomViewModel.swift */; };
+		633BD30426CBC7A100DD5D7F /* CustomCalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD30326CBC7A100DD5D7F /* CustomCalendarController.swift */; };
 		633BD30626CBD37400DD5D7F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD30526CBD37400DD5D7F /* DateExtension.swift */; };
 		633BD30926CD127300DD5D7F /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD30826CD127300DD5D7F /* CalendarModel.swift */; };
 		633BD30B26CD127D00DD5D7F /* MarkedDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD30A26CD127D00DD5D7F /* MarkedDateModel.swift */; };
@@ -65,7 +65,7 @@
 		6319780226C1634000826122 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6319780726C2E26D00826122 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6319780A26C2E3AD00826122 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		633BD30326CBC7A100DD5D7F /* CalendarCustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCustomViewModel.swift; sourceTree = "<group>"; };
+		633BD30326CBC7A100DD5D7F /* CustomCalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarController.swift; sourceTree = "<group>"; };
 		633BD30526CBD37400DD5D7F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		633BD30826CD127300DD5D7F /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		633BD30A26CD127D00DD5D7F /* MarkedDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkedDateModel.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				631977FC26C162AD00826122 /* CaledarsViewModel.swift */,
-				633BD30326CBC7A100DD5D7F /* CalendarCustomViewModel.swift */,
+				633BD30326CBC7A100DD5D7F /* CustomCalendarController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -431,7 +431,7 @@
 			files = (
 				63D7415E26C3EFFD00F83691 /* Session.swift in Sources */,
 				633BD30926CD127300DD5D7F /* CalendarModel.swift in Sources */,
-				633BD30426CBC7A100DD5D7F /* CalendarCustomViewModel.swift in Sources */,
+				633BD30426CBC7A100DD5D7F /* CustomCalendarController.swift in Sources */,
 				63112ED226C56E7800B8EC8F /* CalendarDetailView.swift in Sources */,
 				63D7416026C3F12A00F83691 /* Mappable.swift in Sources */,
 				635356E626C6694D00FB7861 /* ColorExtension.swift in Sources */,

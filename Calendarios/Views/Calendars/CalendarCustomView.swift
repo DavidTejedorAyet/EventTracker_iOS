@@ -9,20 +9,23 @@ import SwiftUI
 import FSCalendar
 
 struct CalendarCustomView: UIViewRepresentable {
-    var calendarModel: CalendarModel
-    @Binding var selectedDate: Date?
-    @ObservedObject var viewModel = CalendarCustomViewModel()
-    
+
+    @Binding var updater: Bool
+    @Binding var selectedCalendar: CalendarModel
+
+    @StateObject var calendarController = CustomCalendarController()
+    @EnvironmentObject var viewModel: CalendarsViewModel
+
     func makeUIView(context: Context) -> FSCalendar {
         let calendar = FSCalendar()
-        viewModel.calendar = calendar
-        viewModel.delegate = context.coordinator
-        viewModel.calendarModel = calendarModel
+        calendarController.calendar = calendar
+        calendarController.delegate = context.coordinator
+        calendarController.calendarModel = selectedCalendar
         return calendar
     }
     
     func updateUIView(_ uiView: FSCalendar, context: Context) {
-        
+        calendarController.checkUpdatableData(updatable: updater)
     }
     
     func makeCoordinator() -> Coordinator {
@@ -32,15 +35,14 @@ struct CalendarCustomView: UIViewRepresentable {
     class Coordinator: NSObject, CalendarViewDelegate {
         func dateDidSelected(date: Date) {
             print(date)
-            parent.selectedDate = date
-            
+            parent.viewModel.selectedDate = date
         }
         
         
         var parent: CalendarCustomView
         
-        init(_ calender: CalendarCustomView) {
-            self.parent = calender
+        init(_ calendar: CalendarCustomView) {
+            self.parent = calendar
         }
         
         
@@ -48,7 +50,7 @@ struct CalendarCustomView: UIViewRepresentable {
     
     struct CalendarCustomView_Previews: PreviewProvider {
         static var previews: some View {
-            CalendarCustomView(calendarModel: CalendarModel(name: "Prueba", iconName: "star", iconColor: "aa1a4b"), selectedDate: .constant(Date()))
+            CalendarCustomView(updater: .constant(true), selectedCalendar: .constant(CalendarModel(name: "", iconName: "", iconColor: "")))
         }
     }
 }
