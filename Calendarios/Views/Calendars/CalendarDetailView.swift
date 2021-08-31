@@ -64,6 +64,11 @@ struct CalendarDetailView: View {
                 Spacer()
             }
             .navigationTitle(viewModel.selectedCalendar.name)
+            .toolbar(content: {
+                NavigationLink(destination: CalendarFormView(calendar: selectedCalendar)) {
+                    Text("Editar")
+                }
+            })
             .onAppear() {
                 viewModel.selectedCalendar = selectedCalendar
             }

@@ -18,7 +18,13 @@ struct CalendarFormView: View {
     @State var name: String = ""
     @State var iconName: String = "star"
     @State var iconColor: Color = .red
+    @State var isEditing: Bool = false
     
+    init(calendar: CalendarModel? = nil) {
+        
+        self.calendar = calendar
+        
+    }
     
     var body: some View {
         ZStack {
@@ -64,9 +70,15 @@ struct CalendarFormView: View {
                     Spacer().frame(height: 50)
                     
                     Button(action: {
-                        viewModel.addCalendar(name: name, imageColor: iconColor, icon: iconName) {
-                            presentationMode.wrappedValue.dismiss()
+                        if let calendarToEdit = calendar {
+                            calendar?.name = name
+                            calendar?.iconColor = iconColor.toHexadecimal()
+                            calendar?.iconName = iconName
+                            viewModel.editCalendar(calendar: calendarToEdit)
+                        } else {
+                            viewModel.addCalendar(name: name, imageColor: iconColor, icon: iconName)
                         }
+                        presentationMode.wrappedValue.dismiss()
 
                     }, label: {
                         Text("GUARDAR")
@@ -80,7 +92,12 @@ struct CalendarFormView: View {
                 IconPickerPopUp(delegate: self)
             }
         }
-            .navigationBarTitle("Nuevo calendario")
+        .navigationBarTitle(calendar?.name ?? "Nuevo calendario")
+        .onAppear {
+            self.name = calendar?.name ?? "Nombre"
+            self.iconName = calendar?.iconName ?? "star"
+            self.iconColor = Color(UIColor(hex: calendar?.iconColor ?? "") ?? .red)
+        }
     }
     
 

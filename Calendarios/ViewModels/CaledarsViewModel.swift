@@ -40,22 +40,26 @@ class CalendarsViewModel: ObservableObject {
         self.calendars = StoredDataManager.current.calendars
     }
     
-    func addCalendar(name: String, imageColor: Color, icon: String, completion: () -> Void) {
+    func addCalendar(name: String, imageColor: Color, icon: String) {
         let newCalendar = CalendarModel(name: name, iconName: icon, iconColor: imageColor.toHexadecimal())
         StoredDataManager.current.calendars.append(newCalendar)
         StoredDataManager.save()
         loadCalendars()
-        print("**** hay \(calendars.count) calendarios")
-        completion()
     }
     
     func deleteCalendar(id: Int) {
-        print("borrando", id)
-        //         let calendarToRemove = StoredDataManager.current.calendars[id]
         StoredDataManager.current.calendars.remove(at: id)
         StoredDataManager.save()
         loadCalendars()
-        //        CalendarStorage.shared.delete(id: id)
+    }
+    
+    func editCalendar(calendar: CalendarModel) {
+        if let index = StoredDataManager.current.calendars.firstIndex(where: {$0.id == calendar.id}) {
+            StoredDataManager.current.calendars[index] = calendar
+            StoredDataManager.current.calendars[index].id = UUID()
+            StoredDataManager.save()
+            loadCalendars()
+        }
     }
     
     func addMark(date: Date, completion: () -> () = {}) {

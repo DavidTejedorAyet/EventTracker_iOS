@@ -19,14 +19,12 @@ struct CalendarListView: View {
         ZStack {
             VStack {
                 List {
-                    ForEach(viewModel.calendars, id: \.self) { calendar in
-                        ZStack{
-                            NavigationLink(destination: CalendarDetailView(selectedCalendar: calendar)) {
-                                CalendarListCellView(calendar: calendar)
-                                    
-                            }
-                            
-                        }            .listRowBackground(Color("BackgroundColor"))
+                    ForEach(viewModel.calendars, id: \.self.id) { calendar in
+                        NavigationLink(destination: CalendarDetailView(selectedCalendar: calendar)) {
+                            CalendarListCellView(calendar: calendar)
+                                
+                        }         .listRowBackground(Color("BackgroundColor"))
+                        
 
                     }
                     
